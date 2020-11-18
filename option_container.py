@@ -14,4 +14,4 @@ class OptionObj:
 		return self.chain
 
 	def getAttr(self, contractName, attr):
-		return float(self.chain[self.chain['Contract Name'] == contractName][attr])
+		return self.chain[self.chain['Contract Name'] == contractName][attr]
