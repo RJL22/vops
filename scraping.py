@@ -4,22 +4,8 @@ import bs4
 import pandas as pd
 import numpy
 
-
-class OptionObj:
-
-	def __init__(self):
-		self.chain = None
-		self.expiration = None
-
-	def __init__(self, a_chain, a_expiration):
-		self.chain = a_chain
-		self.expiration = a_expiration
-
-	def getExpiration(self):
-		return self.expiration
-
-	def getChain(self):
-		return self.chain
+#Local imports
+import option_container
 
 
 def scrapePrice(tickerSymbol):
@@ -54,6 +40,8 @@ def scrapeCallOptions(tickerSymbol):
 	#Convert to bs object
 	webpage = bs4.BeautifulSoup(r.content, features='lxml')
 
+	date = webpage.select('section > section > div > span', {'datareactid':'47'})[2].text
+
 	#Scrape data
 	tables = webpage.select('table', attrs={'datareactid':'50'})
 
@@ -64,17 +52,19 @@ def scrapeCallOptions(tickerSymbol):
 	columnNames = [c.text for c in columns]
 
 
-	trs = callTable.find('tbody').findAll('tr')
+	rows = callTable.find('tbody').findAll('tr')
 	optionMatrix = []
 
-	for tr in trs:
-		tds = tr.findAll('td')
-		row = [td.get_text() for td in tds]
-		optionMatrix.append(row)
+	for row in rows:
+		tds = row.findAll('td')
+		option = [td.get_text() for td in tds]
+		optionMatrix.append(option)
 
 	df = pd.DataFrame(optionMatrix, columns=columnNames)
 
-	return df
+	optionObj = option_container.OptionObj(df, date)
+
+	return optionObj
 
 def scrapePutOptions(tickerSymbol):
 	#load the webpage content
@@ -102,7 +92,7 @@ def scrapePutOptions(tickerSymbol):
 
 	df = pd.DataFrame(optionMatrix, columns=columnNames)
 
-	optionObj = OptionObj(df, date)
+	optionObj = option_container.OptionObj(df, date)
 
 	return optionObj
 

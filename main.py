@@ -3,9 +3,11 @@ from datetime import date
 from fpdf import FPDF
 import requests
 import bs4
+import matplotlib.pyplot as plt
 
 #Local imports
 import scraping
+import option_container
 
 WIDTH = 210
 HEIGHT = 297
@@ -29,6 +31,13 @@ def createOverview(pdf, tickerSymbol):
 	pdf.ln(60)
 
 
+def longCall(x, strike, lp):
+	if x < strike:
+		return -lp
+	elif x >= strike:
+		return x - strike - lp
+	else:
+		return None
 
 if __name__ == '__main__':
 	tickerSymbol = 'AMD';
@@ -45,8 +54,31 @@ if __name__ == '__main__':
 	# pdf.output('analysis.pdf', 'F')
 	# scraping.getPrice(tickerSymbol)
 
-	optionObj = scraping.scrapePutOptions('AMD')
+	optionObj = scraping.scrapeCallOptions('AMD')
 
 	print(optionObj.getExpiration())
 
-	print(optionObj.getChain()[['Contract Name', 'Strike']])
+	print(optionObj.getChain())
+
+	print("Strike from AMD201120C00125000: " + str(optionObj.getAttr('AMD201120C00125000', 'Strike')))
+
+
+	strike = float(optionObj.getChain()['Strike'][71])
+	lp = float(optionObj.getChain()['Last Price'][71])
+
+	x = [i for i in range(200)]
+	y = [longCall(i, strike, lp) for i in x]
+
+	# plt.figure(num='Options Graph', edgecolor='black')
+	plt.style.use('dark_background')
+
+	plot_title = 'Long Call Option: ' + tickerSymbol
+	plt.title(plot_title)
+	plt.plot(x, y, ':')
+	plt.show()
+
+#https://finance.yahoo.com/quote/AMD/options?date=1605830400
+#
+#https://finance.yahoo.com/quote/AMD/options?date=1606435200
+#
+#https://finance.yahoo.com/quote/AMD/options?date=1607040000
