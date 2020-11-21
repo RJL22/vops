@@ -33,8 +33,11 @@ def shortPut(x, strike, p):
 		return p
 
 def graphLongCall(optionObj, contractName):
-	x = [i for i in range(0, 150)]
-	y = [longCall(i, optionObj.getAttr(contractName, 'Strike'), optionObj.getAttr(contractName, 'Last Price')) for i in x]
+	s = float(optionObj.getAttr(contractName, 'Strike'))
+	lp = float(optionObj.getAttr(contractName, 'Last Price'))
+
+	x = [i for i in range(0, 2 * round(float(s)))]
+	y = [longCall(i, s, lp) for i in x]
 
 	# plt.figure(num='Options Graph', edgecolor='black')
 	plt.style.use('dark_background')
@@ -45,8 +48,11 @@ def graphLongCall(optionObj, contractName):
 	plt.show()
 
 def graphShortCall(optionObj, contractName):
-	x = [i for i in range(0, 150)]
-	y = [shortCall(i, float(optionObj.getAttr(contractName, 'Strike')), float(optionObj.getAttr(contractName, 'Last Price'))) for i in x]
+	s = float(str(optionObj.getAttr(contractName, 'Strike')).replace(',', '').replace('\n', ''))
+	lp = float(optionObj.getAttr(contractName, 'Last Price'))
+
+	x = [i for i in range(0, 2 * round(float(s)))]
+	y = [shortCall(i, s, lp) for i in x]
 
 	# plt.figure(num='Options Graph', edgecolor='black')
 	plt.style.use('dark_background')
@@ -57,7 +63,8 @@ def graphShortCall(optionObj, contractName):
 	plt.show()
 
 def graphLongPut(optionObj, contractName):
-	x = [i for i in range(0, 150)]
+	s = optionObj.getAttr(contractName, 'Strike')
+	x = [i for i in range(0, 2 * round(float(s)))]
 	y = [longPut(i, optionObj.getAttr(contractName, 'Strike'), optionObj.getAttr(contractName, 'Last Price')) for i in x]
 
 	# plt.figure(num='Options Graph', edgecolor='black')
@@ -69,7 +76,8 @@ def graphLongPut(optionObj, contractName):
 	plt.show()
 
 def graphShortPut(optionObj, contractName):
-	x = [i for i in range(0, 150)]
+	s = optionObj.getAttr(contractName, 'Strike')
+	x = [i for i in range(0, 2 * round(float(s)))]
 	y = [shortPut(i, optionObj.getAttr(contractName, 'Strike'), optionObj.getAttr(contractName, 'Last Price')) for i in x]
 
 	# plt.figure(num='Options Graph', edgecolor='black')
