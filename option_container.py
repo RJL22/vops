@@ -15,9 +15,6 @@ class OptionObj:
 
 	def getAttr(self, contractName, attr):
 		colNum = self.chain.columns.get_loc(attr)
-		print("Contract name: " + contractName)
 		row = self.chain.loc[self.chain['Contract Name'] == contractName]
-		# print("----------------------------")
-		# print(row)
-		# print("----------------------------")
+
 		return row.iloc[0, colNum].replace(',', '')

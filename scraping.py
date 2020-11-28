@@ -13,23 +13,7 @@ def scrapePrice(tickerSymbol):
 	soup = bs4.BeautifulSoup(r.text, 'lxml')
 	price = soup.find('div', {'class':'D(ib) Mend(20px)'}).find('span').text
 
-	print(soup.find('div', {'class':'D(ib) Mend(20px)'}).find('span'))
-
 	return price
-
-def scrapeOptionStrike(tickerSymbol):
-	r = requests.get('https://finance.yahoo.com/quote/' + tickerSymbol + 'A/options?p=' + tickerSymbol) 
-	soup = bs4.BeautifulSoup(r.content, features='lxml')
-
-	print(soup.prettify())
-
-	# bid = soup.find('div', {'class':'wrap-meta-item'})
-
-	bid = soup.findAll('t', {'id':'summary-bid'})
-
-	print(bid)
-
-	return 0
 
 
 def scrapeCallOptions(tickerSymbol):
@@ -89,6 +73,7 @@ def scrapePutOptions(tickerSymbol):
 		tds = row.findAll('td')
 		option = [td.get_text() for td in tds]
 		optionMatrix.append(option)
+
 
 	df = pd.DataFrame(optionMatrix, columns=columnNames)
 
