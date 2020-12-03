@@ -1,7 +1,8 @@
 import options
 
-tickerSymbol = 'AMZN'
-contractName = 'AMZN201204C01800000'
+
+tickerSymbol = 'AMD'
+contractName = 'AMD201204C00040000'
 
 
 # optionObj = options.scrapePutOptions(tickerSymbol)

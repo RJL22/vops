@@ -6,6 +6,7 @@ import numpy
 
 #Local imports
 import option_container
+from option_exceptions import *
 
 
 def scrapePrice(tickerSymbol):
@@ -44,7 +45,12 @@ def scrapeCallOptions(tickerSymbol):
 		option = [td.get_text() for td in tds]
 		optionMatrix.append(option)
 
-	df = pd.DataFrame(optionMatrix, columns=columnNames)
+	try:
+		df = pd.DataFrame(optionMatrix, columns=columnNames)
+		if len(df.index) == 0:
+			raise EmptyOptionChainError
+	except EmptyOptionChainError:
+		print("Scraped option chain was empty")
 
 	optionObj = option_container.OptionObj(df, date)
 
@@ -76,6 +82,9 @@ def scrapePutOptions(tickerSymbol):
 
 
 	df = pd.DataFrame(optionMatrix, columns=columnNames)
+
+	if len(df.index) == 0:
+		print("Dataframe was not loaded properly")
 
 	optionObj = option_container.OptionObj(df, date)
 
