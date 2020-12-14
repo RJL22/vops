@@ -1,10 +1,10 @@
 # Options
 This python project uses data from yahoo finance to graph option profit-loss diagrams
 
-## Dependencies
-Run this in the terminal:
+## Installing
+Installing with pip:
 ```bash
-pip install -r requirements.txt
+pip install gops
 ```
 
 ## Usage
