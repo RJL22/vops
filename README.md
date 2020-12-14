@@ -17,4 +17,3 @@ optionObj = options.scrapeCallOptions('AMD')
 
 options.graphLongCall(optionObj, contractName)
 ```
-*Note: the contract name (AMD201218C00040000) has likely expired
