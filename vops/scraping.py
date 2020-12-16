@@ -5,8 +5,8 @@ import pandas as pd
 import numpy
 
 #Local imports
-import option_container
-from option_exceptions import *
+from . import option_container
+from . import option_exceptions
 
 
 def scrapePrice(tickerSymbol):
