@@ -4,8 +4,8 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(
-    name="gops",
-    version="0.0.3",
+    name="vops",
+    version="0.0.11",
     author="Ryan Lee",
     author_email="ryanjlee22@gmail.com",
     description="A package for graphing profit-loss option diagrams",
