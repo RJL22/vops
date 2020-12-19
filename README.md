@@ -4,16 +4,17 @@ This python project uses data from yahoo finance to graph option profit-loss dia
 ## Installing
 Installing with pip:
 ```bash
-pip install gops
+pip install vops
 ```
 
 ## Usage
 Simple program graphing a long call option:
 ```python
-import options
+from vops import scraping
+from vops import option_graphs
 
 contractName = 'AMD201218C00040000'
-optionObj = options.scrapeCallOptions('AMD')
+optionObj = scraping.scrapeCallOptions('AMD')
 
-options.graphLongCall(optionObj, contractName)
+options_graphs.graphLongCall(optionObj, contractName)
 ```
