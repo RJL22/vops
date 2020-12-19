@@ -1,26 +1,28 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(
     name="vops",
-    version="0.0.11",
+    version="0.0.18",
     author="Ryan Lee",
     author_email="ryanjlee22@gmail.com",
     description="A package for graphing profit-loss option diagrams",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/RJL22/Options",
-    py_modules=["options"],
-    package_dir={'': 'src'},
+    url="https://github.com/RJL22/vops",
+    package_dir={"": 'src'},
+    packages=find_packages(
+    	where="src"
+    	),
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
     install_requires= [
-    	"beautifulsoup4==4.9.3",
+    "beautifulsoup4==4.9.3",
 	"bs4==0.0.1",
 	"certifi==2020.11.8",
 	"chardet==3.0.4",
