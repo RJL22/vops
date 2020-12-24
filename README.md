@@ -37,6 +37,7 @@ Output:
 
 ## Todo
 
+* Update resource files
 * Add axis labels to all graphs
 * Create method for graphing long and short put options simultaneously
 * Merge call/put options chains
