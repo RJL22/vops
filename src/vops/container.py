@@ -2,10 +2,12 @@ class OptionObj:
 	def __init__(self):
 		self.chain = None
 		self.expiration = None
+		self.stockPrice = None
 
-	def __init__(self, a_chain, a_expiration):
+	def __init__(self, a_chain, a_expiration, a_stockPrice):
 		self.chain = a_chain
 		self.expiration = a_expiration
+		self.stockPrice = a_stockPrice
 
 	def getExpiration(self):
 		return self.expiration

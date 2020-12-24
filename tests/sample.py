@@ -5,15 +5,16 @@ from src.vops import scraping
 from src.vops import graphing
 
 tickerSymbol = 'TSLA'
-contractName = 'TSLA201224C00020000'
+contractName = 'TSLA201224P00150000'
 
 
-# optionObj = options.scrapePutOptions(tickerSymbol)
-optionObj = scraping.scrapeCallOptions(tickerSymbol)
+optionObj = scraping.scrapePutOptions(tickerSymbol)
+# optionObj = scraping.scrapeCallOptions(tickerSymbol)
 print(optionObj.getChain())
+print(scraping.scrapePrice('TSLA'))
 
-# options.graphLongPut(optionObj, contractName)
-# #options.graphShortPut(optionObj, contractName)
-# options.graphLongCall(optionObj, contractName)
+# graphing.graphLongPut(optionObj, contractName)
+graphing.graphShortPut(optionObj, contractName)
+# graphing.graphLongCall(optionObj, contractName)
 # # options.graphShortCall(optionObj, contractName)
-graphing.graphCalls(optionObj, contractName, export = True)
+# graphing.graphCalls(optionObj, contractName, export = False)

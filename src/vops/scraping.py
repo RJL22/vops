@@ -52,7 +52,7 @@ def scrapeCallOptions(tickerSymbol):
 	except exceptions.EmptyOptionChainError:
 		print("Scraped option chain was empty")
 
-	optionObj = container.OptionObj(df, date)
+	optionObj = container.OptionObj(df, date, scrapePrice(tickerSymbol))
 
 	return optionObj
 
@@ -87,7 +87,7 @@ def scrapePutOptions(tickerSymbol):
 	except exceptions.EmptyOptionChainError:
 		print("Scraped option chain was empty")
 
-	optionObj = container.OptionObj(df, date)
+	optionObj = container.OptionObj(df, date, scrapePrice(tickerSymbol))
 
 	return optionObj
 
