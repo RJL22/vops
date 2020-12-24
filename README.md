@@ -34,3 +34,9 @@ graphing.graphCalls(optionObj, 'TSLA201224C00020000', export = True)
 Output:
 
 ![plot](./res/options.png)
+
+## Todo
+
+* Add axis labels to all graphs
+* Create method for graphing long and short put options simultaneously
+* Merge call/put options chains
