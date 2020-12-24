@@ -34,7 +34,7 @@ def shortPut(x, strike, p):
 	elif x >= strike:
 		return p
 
-def graphCalls(optionObj, contractName):
+def graphCalls(optionObj, contractName, export = False):
 
 	s = float(optionObj.getAttr(contractName, 'Strike'))
 	lp = float(optionObj.getAttr(contractName, 'Last Price'))
@@ -45,18 +45,28 @@ def graphCalls(optionObj, contractName):
 
 	plt.style.use('dark_background')
 
+
+
 	fig, axs = plt.subplots(2)
 	fig.suptitle("Call: " + contractName)
 	axs[0].plot(x, y_long)
 	axs[0].title.set_text("Long Call")
+	axs[0].set_xlabel("Profit/Loss ($)")
+	axs[0].set_ylabel("Underlying Stock Price")
 
 	axs[1].plot(x, y_short)
-	axs[1]. title.set_text("Short Call")
+	axs[1].title.set_text("Short Call")
+	axs[1].set_xlabel("Profit/Loss ($)")
+	axs[1].set_ylabel("Underlying Stock Price")
 
 	fig = plt.gcf().subplots_adjust(hspace = 0.5)
 	# fig.subplots_adjust(hspace = 0.2)
 
+	if export == True:
+		plt.savefig('options.png')
+
 	plt.show()
+
 
 
 def graphLongCall(optionObj, contractName):
