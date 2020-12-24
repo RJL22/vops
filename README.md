@@ -15,10 +15,9 @@ Simple program graphing a long call option:
 from vops import scraping
 from vops import graphing
 
-contractName = 'AMD201218C00040000'
-optionObj = scraping.scrapeCallOptions('AMD')
+optionObj = scraping.scrapeCallOptions('TSLA')
 
-graphing.graphLongCall(optionObj, contractName)
+graphing.graphLongCall(optionObj, 'TSLA201224C00020000')
 ```
 Graphing both short and long positions on a call option:
 ```python
