@@ -1,4 +1,4 @@
-# Options
+# Vops
 This python project uses data from yahoo finance to graph option profit-loss diagrams
 
 ## Installing
