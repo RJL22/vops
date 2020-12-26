@@ -15,20 +15,20 @@ Simple program graphing a long call option:
 from vops import scraping
 from vops import graphing
 
-optionObj = scraping.scrapeCallOptions('TSLA')
+optionObj = scraping.scrapeCallOptions('AMD')
 
-graphing.graphLongCall(optionObj, 'TSLA201224C00020000')
+graphing.graphLongCall(optionObj, 'AMD201231C00060000')
 ```
 Graphing both short and long positions on a call option:
 ```python
-optionObj = scraping.scrapeCallOptions('TSLA')
+optionObj = scraping.scrapeCallOptions('AMD')
 
-graphing.graphCalls(optionObj, 'TSLA201224C00020000')
+graphing.graphCalls(optionObj, 'AMD201231C00060000')
 ```
 
 Exporting graphs to a png:
 ```python
-graphing.graphCalls(optionObj, 'TSLA201224C00020000', export = True)
+graphing.graphCalls(optionObj, 'AMD201231C00060000', export = True)
 ```
 
 Output:
@@ -37,7 +37,7 @@ Output:
 
 ## Todo
 
-* Update resource files
 * Add axis labels to all graphs
 * Create method for graphing long and short put options simultaneously
 * Merge call/put options chains
+* Allow option chains from different chains to be scraped
