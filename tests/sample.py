@@ -4,17 +4,16 @@ sys.path.append('../')
 from src.vops import scraping
 from src.vops import graphing
 
-tickerSymbol = 'TSLA'
-contractName = 'TSLA201224P00150000'
+tickerSymbol = 'AMD'
+contractName = 'AMD201231C00060000'
 
 
-optionObj = scraping.scrapePutOptions(tickerSymbol)
-# optionObj = scraping.scrapeCallOptions(tickerSymbol)
-print(optionObj.getChain())
-print(scraping.scrapePrice('TSLA'))
+# optionObj = scraping.scrapePutOptions(tickerSymbol)
+optionObj = scraping.scrapeCallOptions(tickerSymbol)
+
 
 # graphing.graphLongPut(optionObj, contractName)
-graphing.graphShortPut(optionObj, contractName)
+# graphing.graphShortPut(optionObj, contractName)
 # graphing.graphLongCall(optionObj, contractName)
-# # options.graphShortCall(optionObj, contractName)
-# graphing.graphCalls(optionObj, contractName, export = False)
+# graphing.graphShortCall(optionObj, contractName)
+graphing.graphCalls(optionObj, contractName, export = True)
