@@ -47,7 +47,7 @@ def graphCalls(optionObj, contractName, export = False):
 	plt.style.use('dark_background')
 
 	fig, axs = plt.subplots(2)
-	fig.suptitle("Call: " + contractName)
+	fig.suptitle("Call Option: " + contractName)
 	axs[0].plot(x, y_long)
 	axs[0].title.set_text("Long Call")
 	axs[0].set_xlabel("Stock Price at Expiration")
@@ -55,6 +55,38 @@ def graphCalls(optionObj, contractName, export = False):
 
 	axs[1].plot(x, y_short)
 	axs[1].title.set_text("Short Call")
+	axs[1].set_xlabel("Stock Price at Expiration")
+	axs[1].set_ylabel("Profit/Loss ($)")
+
+	fig = plt.gcf().subplots_adjust(hspace = 0.5)
+	# fig.subplots_adjust(hspace = 0.2)
+
+	if export == True:
+		plt.savefig('options.png')
+
+	plt.show()
+
+def graphPuts(optionObj, contractName, export = False):
+
+	s = float(optionObj.getAttr(contractName, 'Strike'))
+	lp = float(optionObj.getAttr(contractName, 'Last Price'))
+
+	x = [i for i in range(round(float(optionObj.stockPrice)) // 2, round(float(optionObj.stockPrice)) * 2)]
+
+	y_long = [longPut(i, s, lp) for i in x]
+	y_short = [shortPut(i, s, lp) for i in x]
+
+	plt.style.use('dark_background')
+
+	fig, axs = plt.subplots(2)
+	fig.suptitle("Put Option: " + contractName)
+	axs[0].plot(x, y_long)
+	axs[0].title.set_text("Long Put")
+	axs[0].set_xlabel("Stock Price at Expiration")
+	axs[0].set_ylabel("Profit/Loss ($)")
+
+	axs[1].plot(x, y_short)
+	axs[1].title.set_text("Short Put")
 	axs[1].set_xlabel("Stock Price at Expiration")
 	axs[1].set_ylabel("Profit/Loss ($)")
 
