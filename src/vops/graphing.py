@@ -80,7 +80,7 @@ def graphLongCall(optionObj, contractName, export = False):
 
 	plot_title = contractName
 	plt.title(plot_title)
-	plt.plot(x, y, ':')
+	plt.plot(x, y)
 
 	if export == True:
 		plt.savefig('options.png')
@@ -99,7 +99,7 @@ def graphShortCall(optionObj, contractName, export = False):
 
 	plot_title = contractName
 	plt.title(plot_title)
-	plt.plot(x, y, ':')
+	plt.plot(x, y)
 
 	if export == True:
 		plt.savefig('options.png')
@@ -118,7 +118,7 @@ def graphLongPut(optionObj, contractName, export = False):
 
 	plot_title = contractName
 	plt.title(plot_title)
-	plt.plot(x, y, ':')
+	plt.plot(x, y)
 
 	if export == True:
 		plt.savefig('options.png')
@@ -137,7 +137,7 @@ def graphShortPut(optionObj, contractName, export = False):
 
 	plot_title = contractName
 	plt.title(plot_title)
-	plt.plot(x, y, ':')
+	plt.plot(x, y)
 
 	if export == True:
 		plt.savefig('options.png')
