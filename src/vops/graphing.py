@@ -34,7 +34,7 @@ def shortPut(x, strike, p):
 	elif x >= strike:
 		return p
 
-def graphCalls(optionObj, contractName, export = False):
+def graphCalls(optionObj, contractName, display = True, export = False, output = 'graph.pdf'):
 
 	s = float(optionObj.getAttr(contractName, 'Strike'))
 	lp = float(optionObj.getAttr(contractName, 'Last Price'))
@@ -44,10 +44,9 @@ def graphCalls(optionObj, contractName, export = False):
 	y_long = [longCall(i, s, lp) for i in x]
 	y_short = [shortCall(i, s, lp) for i in x]
 
-	plt.style.use('dark_background')
-
 	fig, axs = plt.subplots(2)
 	fig.suptitle("Call Option: " + contractName)
+	axs[0].axvline(x = optionObj.stockPrice)
 	axs[0].plot(x, y_long)
 	axs[0].title.set_text("Long Call")
 	axs[0].set_xlabel("Stock Price at Expiration")
@@ -57,16 +56,18 @@ def graphCalls(optionObj, contractName, export = False):
 	axs[1].title.set_text("Short Call")
 	axs[1].set_xlabel("Stock Price at Expiration")
 	axs[1].set_ylabel("Profit/Loss ($)")
+	# axs[1].axvline(x = optionObj.stockPrice)
 
 	fig = plt.gcf().subplots_adjust(hspace = 0.5)
 	# fig.subplots_adjust(hspace = 0.2)
 
 	if export == True:
-		plt.savefig('options.png')
+		plt.savefig(output)
 
-	plt.show()
+	if display == True:
+		plt.show()
 
-def graphPuts(optionObj, contractName, export = False):
+def graphPuts(optionObj, contractName, display = True, export = False, output = 'graph.png'):
 
 	s = float(optionObj.getAttr(contractName, 'Strike'))
 	lp = float(optionObj.getAttr(contractName, 'Last Price'))
@@ -75,8 +76,6 @@ def graphPuts(optionObj, contractName, export = False):
 
 	y_long = [longPut(i, s, lp) for i in x]
 	y_short = [shortPut(i, s, lp) for i in x]
-
-	plt.style.use('dark_background')
 
 	fig, axs = plt.subplots(2)
 	fig.suptitle("Put Option: " + contractName)
@@ -94,9 +93,10 @@ def graphPuts(optionObj, contractName, export = False):
 	# fig.subplots_adjust(hspace = 0.2)
 
 	if export == True:
-		plt.savefig('options.png')
+		plt.savefig(output)
 
-	plt.show()
+	if display == True:
+		plt.show()
 
 
 
@@ -106,9 +106,6 @@ def graphLongCall(optionObj, contractName, export = False):
 
 	x = [i for i in range(round(float(optionObj.stockPrice)) // 2, round(float(optionObj.stockPrice)) * 2)]
 	y = [longCall(i, s, lp) for i in x]
-
-	# plt.figure(num='Options Graph', edgecolor='black')
-	plt.style.use('dark_background')
 
 	plot_title = contractName
 	plt.title(plot_title)
@@ -126,9 +123,6 @@ def graphShortCall(optionObj, contractName, export = False):
 	x = [i for i in range(round(float(optionObj.stockPrice)) // 2, round(float(optionObj.stockPrice)) * 2)]
 	y = [shortCall(i, s, lp) for i in x]
 
-	# plt.figure(num='Options Graph', edgecolor='black')
-	plt.style.use('dark_background')
-
 	plot_title = contractName
 	plt.title(plot_title)
 	plt.plot(x, y)
@@ -145,9 +139,6 @@ def graphLongPut(optionObj, contractName, export = False):
 	x = [i for i in range(round(float(optionObj.stockPrice)) // 2, round(float(optionObj.stockPrice)) * 2)]
 	y = [longPut(i, s, lp) for i in x]
 
-	# plt.figure(num='Options Graph', edgecolor='black')
-	plt.style.use('dark_background')
-
 	plot_title = contractName
 	plt.title(plot_title)
 	plt.plot(x, y)
@@ -163,9 +154,6 @@ def graphShortPut(optionObj, contractName, export = False):
 
 	x = [i for i in range(round(float(optionObj.stockPrice)) // 2, round(float(optionObj.stockPrice)) * 2)]
 	y = [shortPut(i, s, lp) for i in x]
-
-	# plt.figure(num='Options Graph', edgecolor='black')
-	plt.style.use('dark_background')
 
 	plot_title = contractName
 	plt.title(plot_title)
