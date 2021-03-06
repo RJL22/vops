@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="vops",
-    version="0.0.21",
+    version="0.0.22",
     author="Ryan Lee",
     author_email="ryanjlee22@gmail.com",
     description="A package for graphing profit-loss option diagrams",
